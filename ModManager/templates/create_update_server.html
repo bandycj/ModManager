@@ -1,0 +1,9 @@
+{% extends 'base.html' -%}{% from 'macros.html' import create_popup, create_form -%}
+
+{% block content -%}
+    {% if form.name.data and server_id -%}
+        {{ create_form(form, url_for('create_update_server', server_id=server_id), url_for('delete_server', server_id=server_id)) }}
+    {% else -%}
+        {{ create_form(form, url_for('create_update_server')) }}
+    {% endif -%}
+{% endblock -%}

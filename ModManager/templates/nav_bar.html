@@ -1,34 +1,42 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="{{ url_for('index') }}">ModManager</a>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span8 offset2">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="{{ url_for('index') }}">ModManager</a>
 
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    {% if g.user.admin %}
-                        <li><!--suppress HtmlUnknownTarget -->
-                            <a href="#users" data-toggle="modal">Users</a>
-                        </li>
-                    {% endif %}
-                </ul>
-                {% if g.user.name %}
-                    <span class="pull-right" style="color: white; vertical-align: text-bottom">Welcome {{ g.user.name }}(<a href="{{ url_for('logout') }}">logout</a>)<br/></span>
-                {% else %}
-                    <form class="navbar-form pull-right" action="{{ url_for('login') }}" method="post">
-                        <input type="hidden" id="openid" name="openid" value="https://www.google.com/accounts/o8/id">
-                        <input type="hidden" name="next" value="{{ next }}">
-                        <button type="submit" class="btn">Sign in with Google</button>
-                    </form>
-                {% endif %}
+                    <div class="nav-collapse collapse">
+                        {% if g.user.name %}
+                            <p class="navbar-text pull-right">
+                                Welcome {{ g.user.name }}(<a href="{{ url_for('logout') }}" class="navbar-link">logout</a>)<br/>
+                            </p>
+                        {% else %}
+                            <form class="navbar-form pull-right" action="{{ url_for('login') }}" method="post">
+                                <input type="hidden" id="openid" name="openid" value="https://www.google.com/accounts/o8/id">
+                                <input type="hidden" name="next" value="{{ next }}">
+                                <button type="submit" class="btn">Sign in with Google</button>
+                            </form>
+                        {% endif %}
+
+                        <ul class="nav">
+                            {% if g.user.admin %}
+                                <li><!--suppress HtmlUnknownTarget -->
+                                    <a href="#users" data-toggle="modal">Users</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 {% if g.user.admin %}
     {% include "users.html" -%}
 {% endif %}

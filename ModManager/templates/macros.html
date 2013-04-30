@@ -74,3 +74,53 @@
         </div>
     </form>
 {% endmacro %}
+
+{% macro buildTable(server, mods) %}
+    <div id="{{ server.name }}tableContainer" data-related="{{ server.name }}ServerLink" style="display: none;">
+        <table id="{{ server.name }}modTable" class="table table-striped table-condensed table-bordered tablesorter">
+            <thead>
+                <tr>
+                    <th style="width: 10%" class="version">Minecraft</th>
+                    <th style="width: 70%">Mod</th>
+                    <th style="width: 10%" class="version">Installed</th>
+                    <th style="width: 10%" class="version">Latest</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%- for mod in mods %}
+                    <tr class="modRow">
+                        {% set mcVersionCellClass = "updated" %}
+                        {% if mod.mcVersion != mods.minecraft %}
+                            {% set mcVersionCellClass = "outdated" %}
+                        {% endif %}
+                        <td class="version mcVersion {{ mcVersionCellClass }}">{{ mod.mcVersion }}</td>
+                        <td>
+                            <details>
+                                <summary style="cursor: pointer">
+                                    {{ mod.name }}
+                                    {% if mod.critical %}
+                                        <i class="icon-star"></i>
+                                    {% endif %}
+                                </summary>
+                                <div class="charmsBar">
+                                    <a href="{{ url_for('create_update_mod', mod_id=mod.id) }}"><i class="icon-edit"></i></a>
+                                    <a href="{{ mod.link }}"><i class="icon-globe"></i></a>
+                                </div>
+                                <p>{{ mod.description }}</p>
+                            </details>
+                        </td>
+                        {% set cellClass = "" %}
+                        {% if mod.name in mods %}
+                            {% if mods[mod.name] != mod.latestVersion %}
+                                {% set cellClass = "newVersion" %}
+                            {% endif %}
+                        {% endif %}
+                        <td class="version {{ cellClass }}">{{ mods[mod.name] }}</td>
+                        <td class="version">{{ mod.latestVersion }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a id="{{ server.name }}addModLink" class="button greenButton" href="{{ url_for('create_update_mod') }}">Add Mod</a>
+    </div>
+{% endmacro %}

@@ -123,5 +123,5 @@ def edit_user(id=None):
         except (IntegrityError, OperationalError) as e:
             flash("Failed")
 
-    return render_template('create_update.html', form=form, id=id)
+    return render_template('create_update_mod.html', form=form, id=id)
 

@@ -1,73 +1,106 @@
 import urllib2
-from flask import render_template, jsonify, flash, redirect, url_for, json, request
+import zipfile
+
+from flask import render_template, jsonify, flash, redirect, url_for, json, request, abort
 from flask.ext.wtf import Form
-from models import Mod, db, User
-from sqlalchemy.exc import IntegrityError, OperationalError
-from views.auth import login_required, admin_required
 from wtforms.ext.sqlalchemy.orm import model_form
-from wtforms.validators import URL, Required
+from wtforms.validators import URL, Required, IPAddress, NumberRange
+from ModManager import models
+
+from ModManager.models import Mod, User, Server
+from ModManager.views.auth import login_required, admin_required
+from ModManager.views.forms.Forms import ModForm, ServerForm
+
 
 __author__ = 'e83800'
 
 VERSION_INFO_URL = "http://wiper.myftp.org/mod_versions.json"
-ModForm = model_form(Mod, base_class=Form, field_args={
-    'name': {
-        'validators': [Required()]
-    },
-    'link': {
-        'validators': [URL()]
-    }
-})
-
-class Users(object):
-    pass
-
 
 def index():
-    mods = Mod.query.all()
-    mod_info = json.loads(urllib2.urlopen(VERSION_INFO_URL).read())
+    # mods = Mod.query.all()
+    # mod_info = json.loads(urllib2.urlopen(VERSION_INFO_URL).read())
     users = User.query.all()
-    return render_template('index.html', users=users, mods=mods, mod_info=mod_info)
+    servers = Server.query.all()
+    mods = {}
+
+    for server in servers:
+        mods[server.name] = json.loads(urllib2.urlopen(server.mods_url).read())
+    return render_template('index.html', users=users, servers=servers, mods=mods)
+    # return render_template('mod_list.html', users=users, mods=mods, mod_info=mod_info)
 
 
 @login_required
-def mod_info():
-    mod_info = json.loads(urllib2.urlopen(VERSION_INFO_URL).read())
-    mods = []
-    for result in Mod.query.all():
-        mods.append(result._asdict())
-    return jsonify(mod_list=mods, version_list=mod_info)
+def mod_info(server_id):
+    server = Server.query.filter_by(serverId=server_id).first()
+    if server is not None:
+        mod_info = json.loads(urllib2.urlopen(server.mods_url).read())
+        mods = []
+        for result in Mod.query.all():
+            mods.append(result._asdict())
+        return jsonify(mod_list=mods, version_list=mod_info)
+    abort(500)
+
+
+@login_required
+def server_info():
+    servers = []
+    for result in Server.query.all():
+        servers.append(result._asdict())
+    return jsonify(servers=servers)
 
 
 @admin_required
-def create_update(id=None):
-    mod = Mod.query.filter_by(id=id).first()
+def create_update_mod(mod_id=None):
+    mod = Mod.query.filter_by(id=mod_id).first()
     form = ModForm(request.form, obj=mod)
 
     if form.validate_on_submit():
         if mod is None:
             mod = Mod(form.name.data)
-
         form.populate_obj(mod)
-        db.session.add(mod)
-        try:
-            db.session.commit()
+        if models.commit(mod):
             flash("Success")
             return redirect(url_for('index'))
-        except (IntegrityError, OperationalError) as e:
+        else:
             flash("Failed")
-
-    return render_template('create_update.html', form=form, id=id)
+    return render_template('create_update_mod.html', form=form, mod_id=mod_id)
 
 
 @admin_required
-def delete(id=None):
-    mod = Mod.query.filter_by(id=id).first()
-    try:
-        db.session.delete(mod)
-        db.session.commit()
+def create_update_server(server_id=None):
+    server = Server.query.filter_by(serverId=server_id).first()
+    form = ServerForm(request.form, obj=server)
+
+    if form.validate_on_submit():
+        if server is None:
+            server = Server(form.name.data, form.ip.data, form.port.data, form.bukkit.data, form.forge.data, form.mods_url.data)
+        form.populate_obj(server)
+        if models.commit(server):
+            flash("Success")
+            return redirect(url_for('index'))
+        else:
+            flash("Failed")
+
+    return render_template('create_update_server.html', form=form, server_id=server_id)
+
+
+@admin_required
+def delete_mod(mod_id=None):
+    mod = Mod.query.filter_by(id=mod_id).first()
+    if models.delete(mod):
         flash("Success")
         return redirect(url_for('index'))
-    except (IntegrityError, OperationalError) as e:
+    else:
         flash("Delete failed!")
-    return redirect(url_for('create_update', id=id))
+    return redirect(url_for('create_update_mod', mod_id=mod_id))
+
+
+@admin_required
+def delete_server(server_id=None):
+    server = Server.query.filter_by(id=server_id).first()
+    if models.delete(server):
+        flash("Success")
+        return redirect(url_for('index'))
+    else:
+        flash("Delete failed!")
+    return redirect(url_for('create_update_server', server_id=server_id))

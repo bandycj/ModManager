@@ -1,9 +1,0 @@
-{% extends 'base.html' -%}{% from 'macros.html' import create_popup, create_form -%}
-
-{% block content -%}
-    {% if form.name.data -%}
-        {{ create_form(form, url_for('create_update', id=id), url_for('delete', id=id)) }}
-    {% else -%}
-        {{ create_form(form, url_for('create_update')) }}
-    {% endif -%}
-{% endblock -%}

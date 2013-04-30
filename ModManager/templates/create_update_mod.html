@@ -1,0 +1,9 @@
+{% extends 'base.html' -%}{% from 'macros.html' import create_popup, create_form -%}
+
+{% block content -%}
+    {% if form.name.data and mod_id -%}
+        {{ create_form(form, url_for('create_update_mod', mod_id=mod_id), url_for('delete_mod', mod_id=mod_id)) }}
+    {% else -%}
+        {{ create_form(form, url_for('create_update_mod')) }}
+    {% endif -%}
+{% endblock -%}

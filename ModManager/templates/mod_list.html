@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='themes/blue/style.css') }}" id="" media="print, projection, screen"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.tablesorter.min.js') }}"></script>
+    <script type="text/javascript">
+        var currentMC = "{{ mod_info.minecraft }}";
+        $.tablesorter.addParser({
+                                    // set a unique id
+                                    id:'versions',
+                                    is:function (s) {
+                                        // return false so this parser is not auto detected
+                                        return false;
+                                    },
+                                    format:function (s) {
+                                        // format your data for normalization
+                                        return s.replace('.', '');
+                                    },
+                                    // set type, either numeric or text
+                                    type:'numeric'
+                                });
+
+        $("document").ready(function () {
+            $('#updateThreadLink').html(currentMC);
+            $('#updated').html($('.updated', 'tr').length);
+            $('#notUpdated').html($('.outdated', 'tr').length);
+
+            $('#modTable').tablesorter({
+                                           headers:{
+                                               0:{
+                                                   sorter:'versions'
+                                               }
+                                           },
+                                           sortList:[
+                                               [0, 1],
+                                               [1, 0]
+                                           ]
+                                       }).trigger("create");
+        });
+
+    </script>
+    <style type="text/css">
+        .version {
+            text-align: center;
+        }
+
+        .outdated {
+            background-color: #FF5347 !important;
+        }
+
+        .updated {
+            background-color: lightgreen !important;
+        }
+
+        .newVersion {
+            background-color: #ffe21c !important;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    {% if g.user.name %}
+        <div class="page-header">
+            <h1 style="text-align: center;">
+                <a id="updateThreadLink" href="http://www.minecraftforum.net/topic/1434593-list-of-mods-for-144-132-and-142-as-well/" target="_blank"></a>
+            </h1>
+        </div>
+        <div style="margin-left: auto; margin-right: auto">
+            <span class="countLabel">Updated</span><span class="updated countBubble" id="updated"></span>
+            <span class="countLabel">Outdated</span><span class="outdated countBubble" id="notUpdated"></span>
+        </div>
+
+        <div id="tableContainer">
+            <table id="modTable" class="table table-striped table-condensed table-bordered tablesorter">
+                <thead>
+                    <tr>
+                        <th style="width: 10%" class="version">Minecraft</th>
+                        <th style="width: 70%">Mod</th>
+                        <th style="width: 10%" class="version">Installed</th>
+                        <th style="width: 10%" class="version">Latest</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%- for mod in mods %}
+                        <tr class="modRow">
+                            {% set mcVersionCellClass = "updated" %}
+                            {% if mod.mcVersion != mod_info.minecraft %}
+                                {% set mcVersionCellClass = "outdated" %}
+                            {% endif %}
+                            <td class="version mcVersion {{ mcVersionCellClass }}">{{ mod.mcVersion }}</td>
+                            <td>
+                                <details>
+                                    <summary style="cursor: pointer">
+                                        {{ mod.name }}
+                                        {% if mod.critical %}
+                                            <i class="icon-star"></i>
+                                        {% endif %}
+                                    </summary>
+                                    <div class="charmsBar">
+                                        <a href="{{ url_for('create_update_mod', mod_id=mod.id) }}"><i class="icon-edit"></i></a>
+                                        <a href="{{ mod.link }}"><i class="icon-globe"></i></a>
+                                    </div>
+                                    <p>{{ mod.description }}</p>
+                                </details>
+                            </td>
+                            {% set cellClass = "" %}
+                            {% if mod.name in mod_info %}
+                                {% if mod_info[mod.name] != mod.latestVersion %}
+                                    {% set cellClass = "newVersion" %}
+                                {% endif %}
+                            {% endif %}
+                            <td class="version {{ cellClass }}">{{ mod_info[mod.name] }}</td>
+                            <td class="version">{{ mod.latestVersion }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a id="addModLink" class="button greenButton" href="{{ url_for('create_update_mod') }}">Add Mod</a>
+    {% endif %}
+{% endblock %}
