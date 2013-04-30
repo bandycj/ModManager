@@ -1,10 +1,6 @@
 import urllib2
-import zipfile
 
 from flask import render_template, jsonify, flash, redirect, url_for, json, request, abort
-from flask.ext.wtf import Form
-from wtforms.ext.sqlalchemy.orm import model_form
-from wtforms.validators import URL, Required, IPAddress, NumberRange
 from ModManager import models
 
 from ModManager.models import Mod, User, Server
