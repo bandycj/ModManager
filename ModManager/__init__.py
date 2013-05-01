@@ -11,12 +11,7 @@ import models
 # setup flask-openid
 oid = OpenID(application)
 
-cache = None
-if 'nt' in os.name:
-    cache = SimpleCache()
-else:
-    from werkzeug.contrib.cache import MemcachedCache
-    cache = MemcachedCache(['/tmp/memcached.sock'])
+cache = SimpleCache()
 
 @application.before_request
 def before_request():
