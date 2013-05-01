@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-    <form action="" method=post>
-        <label for="openid">OpenID:</label>
-        <input type="hidden" id="openid" name="openid" value="https://www.google.com/accounts/o8/id">
-        <input type="submit" class="blueButton" value="Sign in with Google">
-        <input type="hidden" name="next" value="{{ next }}">
-    </form>
-{% endblock %}

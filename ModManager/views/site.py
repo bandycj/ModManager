@@ -1,6 +1,6 @@
 import urllib2
 
-from flask import render_template, jsonify, flash, redirect, url_for, json, request, abort
+from flask import render_template, jsonify, flash, redirect, url_for, json, request, abort, g
 from ModManager import models
 
 from ModManager.models import Mod, User, Server
@@ -10,31 +10,17 @@ from ModManager.views.forms.Forms import ModForm, ServerForm
 
 __author__ = 'e83800'
 
-VERSION_INFO_URL = "http://wiper.myftp.org/mod_versions.json"
-
 def index():
-    # mods = Mod.query.all()
-    # mod_info = json.loads(urllib2.urlopen(VERSION_INFO_URL).read())
-    users = User.query.all()
+    users = None
+    if g.user != None and g.user.admin == True:
+        users = User.query.all()
+
     servers = Server.query.all()
     mods = {}
 
     for server in servers:
         mods[server.name] = json.loads(urllib2.urlopen(server.mods_url).read())
     return render_template('index.html', users=users, servers=servers, mods=mods)
-    # return render_template('mod_list.html', users=users, mods=mods, mod_info=mod_info)
-
-
-@login_required
-def mod_info(server_id):
-    server = Server.query.filter_by(serverId=server_id).first()
-    if server is not None:
-        mod_info = json.loads(urllib2.urlopen(server.mods_url).read())
-        mods = []
-        for result in Mod.query.all():
-            mods.append(result._asdict())
-        return jsonify(mod_list=mods, version_list=mod_info)
-    abort(500)
 
 
 @login_required
