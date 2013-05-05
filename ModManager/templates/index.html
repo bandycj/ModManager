@@ -59,7 +59,12 @@
                                         <td class="version mcVersion">{{ modInfo['mcversion'] }}</td>
                                         <td>{{ value }}</td>
                                         <td class="version">{{ modInfo['version'] }}</td>
-                                        <td class="version">{{ update_info[value] }}</td>
+                                        <td class="version">
+                                        {% if update_info[value] != modInfo['version'] %}
+                                            <i class="icon-circle-arrow-up"></i>
+                                        {% endif %}
+                                            {{ update_info[value] }}
+                                        </td>
                                     </tr>
                                 {% endif -%}
                             {% endfor -%}
