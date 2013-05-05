@@ -45,7 +45,7 @@ def main():
                         mcversion = sanitize(line)
                         if mcversion != "na":
                             output[key]['mcversion'] = mcversion
-                    elif line.find("version") > 0 and output[key]['version'] == None:
+                    elif line.find("version") > 0 and 'version' not in output[key]:
                         version = sanitize(line)
                         if version != "na":
                             output[key]['version'] = version
