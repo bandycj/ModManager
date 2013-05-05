@@ -29,11 +29,12 @@ def main():
     for mod_file in glob.glob(minecraft_dir + "/*mods/*"):
         print mod_file
         for key in meta_data:
-            m = re.search('(?i)' + meta_data[key]['fileRegex'] + '\\.(jar|zip)', mod_file)
-            if m is not None:
-                output[key] = {}
-                output[key]['version'] = m.group('version')
-                print "\t" + m.group('version')
+            if meta_data[key]['fileRegex'] != "":
+                m = re.search('(?i)' + meta_data[key]['fileRegex'] + '\\.(jar|zip)', mod_file)
+                if m is not None:
+                    output[key] = {}
+                    output[key]['version'] = m.group('version')
+                    print "\t" + m.group('version')
 
             root = zipfile.ZipFile(mod_file, "r")
             try:
