@@ -4,10 +4,15 @@
         "scraperRegex": "Version(?P<version>[\\d.]+)",
         "fileRegex": "AdvancedMachines_(?P<version>[\\d.]+)"
     },
+    "BspkrsCore": {
+        "url": "http://www.minecraftforum.net/topic/1114612-152-bspkrs-mods-armorstatushud-v17-directionhud-v113-statuseffecthud-v110/",
+        "scraperRegex": "(?P<version>[\\d.]+)$",
+        "fileRegex": "bspkrsCorev(?P<version>[\\d.]+)"
+    },
     "Buildcraft": {
         "url": "http://bit.ly/buildcraftver",
         "scraperRegex": "(?P<version>[\\d.]+)$",
-        "fileRegex": "buildcraft-(?P<version>[\\d.]+)"
+        "fileRegex": "buildcraft.*-(?P<version>[\\d.]+)"
     },
     "CodeChicken Core": {
         "url": "http://www.minecraftforum.net/topic/909223-125145-smp-chickenbones-mods/",
@@ -27,27 +32,27 @@
     "Damage Indicators": {
         "url": "http://www.minecraftforum.net/topic/1536685-142132-forge-hit-splat-damage-indicators-v105/",
         "scraperRegex": "DOWNLOADDamageIndicators\\[.*\\]v(?P<version>[\\d.]+)",
-        "fileRegex": "DamageIndicators.*\\](?P<version>.*)"
+        "fileRegex": "DamageIndicators\\sv(?P<version>[\\d.]+)"
     },
     "Dynmap": {
         "url": "http://www.minecraftforum.net/topic/1543523-dynmap-dynmap-web-maps-for-minecraft/",
-        "scraperRegex": "DynmapForgev(?P<version>[\\d\\.]+)-\\[Adfly\\]",
-        "fileRegex": "Dynmap-(?P<version>.*)"
+        "scraperRegex": "DynmapForgev(?P<version>[\\d.]+)-\\[Adfly\\]",
+        "fileRegex": "Dynmap-(?P<version>[\\d.]+)"
     },
     "EnchantingPlus": {
         "url": "http://www.minecraftforum.net/topic/1528282-142132sspsmp-enchanting-plus-v1110/",
         "scraperRegex": "VersionsMinecraft[\\d.]+:(?P<version>[\\d.]+)download",
-        "fileRegex": "EnchantingPlus-(?P<version>[\\d.])"
+        "fileRegex": "EnchantingPlus-[\\d.]+-(?P<version>[\\d.]+)"
     },
     "EnderStorage": {
         "url": "http://www.minecraftforum.net/topic/909223-125142-smp-chickenbones-mods/",
         "scraperRegex": "EnderStorageSpoiler:LatestVersion:(?P<version>[\\d.]+)",
-        "fileRegex": "EnderStorage(?P<version>[\\d.])"
+        "fileRegex": "EnderStorage\\s(?P<version>[\\d.]+)"
     },
     "Industrialcraft": {
         "url": "http://ic2api.player.to:8080/job/IC2_lf/",
         "scraperRegex": "LastSuccessfulArtifactsindustrialcraft-2-api_[\\d.]+-lf\\.zip\\d+\\.\\d+KBindustrialcraft-2_(?P<version>[\\d.]+)-lf\\.jar",
-        "fileRegex": "industrialcraft-2_(?P<version>[\\d.+])-lf"
+        "fileRegex": "industrialcraft-2_(?P<version>[\\d.]+).*"
     },
     "InfernalMobs": {
         "url": "http://atomicstryker.net/updatemanager/modversions.txt",
@@ -57,7 +62,7 @@
     "Inventory Tweaks": {
         "url": "http://inventory-tweaks.readthedocs.org/en/latest/#getting-started",
         "scraperRegex": "DownloadInventoryTweaks(?P<version>[\\d.]+)",
-        "fileRegex": "InventoryTweaks_(?P<version>[\\d.]+)"
+        "fileRegex": "InventoryTweaks-(?P<version>[\\d.]+)"
     },
     "Iron Chests": {
         "url": "http://files.minecraftforge.net/IronChests2/",
@@ -92,12 +97,12 @@
     "Optifine": {
         "url": "http://www.minecraftforum.net/topic/249637-152-optifine-hd-d2-fps-boost-hd-textures-aa-af-and-much-more/",
         "scraperRegex": "OptiFineHD(?P<version>[A-F\\d]+)Ultra",
-        "fileRegex": "OptiFine_[\\d.]_HD_U_(?P<version>[A-F\\d]+)"
+        "fileRegex": "OptiFine_[\\d.]+_HD_U_(?P<version>[A-F\\d]+)"
     },
     "REI's Minimap": {
         "url": "http://www.minecraftforum.net/topic/482147-145-nov21-reis-minimap-v32-05/",
         "scraperRegex": "DownloadRei'sMinimapv(?P<version>[\\d._]+)",
-        "fileRegex": "ReiMinimap_v(?P<version>[\\d._])"
+        "fileRegex": "ReiMinimap_v(?P<version>[\\d._]+)"
     },
     "Tree Capitator": {
         "url": "http://bspk.rs/MC/TreeCapitator_Forge/latest/index.html",
