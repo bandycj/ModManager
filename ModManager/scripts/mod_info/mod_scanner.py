@@ -6,7 +6,7 @@ import re
 import zipfile
 
 from stat import S_IRUSR, S_IWUSR, S_IRGRP, S_IWGRP, S_IROTH
-from scripts.mod_info.minecraft_query import MinecraftQuery
+from minecraft_query import MinecraftQuery
 
 __author__ = 'e83800'
 
