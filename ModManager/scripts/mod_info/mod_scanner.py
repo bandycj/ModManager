@@ -27,12 +27,13 @@ def main():
     minecraft_dir = args.directory
     output = {"minecraft": full_info['version']}
     for mod_file in glob.glob(minecraft_dir + "/*mods/*"):
+        print mod_file
         for key in meta_data:
             m = re.search('(?i)' + meta_data[key]['fileRegex'] + '\\.(jar|zip)', mod_file)
             if m is not None:
                 output[key] = {}
                 output[key]['version'] = m.group('version')
-
+                print "\t" + m.group('version')
                 root = zipfile.ZipFile(mod_file, "r")
                 try:
                     root.getinfo('mcmod.info')
@@ -42,7 +43,7 @@ def main():
                             mcversion = sanitize(line)
                             if mcversion != "na":
                                 output[key]['mcversion'] = mcversion
-                        elif line.find("version") > 0:
+                        elif line.find("version") > 0 and output[key]['version'] == None:
                             version = sanitize(line)
                             if version != "na":
                                 output[key]['version'] = version
