@@ -34,25 +34,26 @@ def main():
                 output[key] = {}
                 output[key]['version'] = m.group('version')
                 print "\t" + m.group('version')
-                root = zipfile.ZipFile(mod_file, "r")
-                try:
-                    root.getinfo('mcmod.info')
-                    lines = root.open('mcmod.info').readlines()
-                    for line in lines:
-                        if line.find("mcversion") > 0:
-                            mcversion = sanitize(line)
-                            if mcversion != "na":
-                                output[key]['mcversion'] = mcversion
-                        elif line.find("version") > 0 and output[key]['version'] == None:
-                            version = sanitize(line)
-                            if version != "na":
-                                output[key]['version'] = version
 
-                        if 'version' in output[key] and 'mcversion' in output[key]:
-                            break
-                except KeyError:
-                    # no mcmod.info, ignore
-                    pass
+            root = zipfile.ZipFile(mod_file, "r")
+            try:
+                root.getinfo('mcmod.info')
+                lines = root.open('mcmod.info').readlines()
+                for line in lines:
+                    if line.find("mcversion") > 0:
+                        mcversion = sanitize(line)
+                        if mcversion != "na":
+                            output[key]['mcversion'] = mcversion
+                    elif line.find("version") > 0 and output[key]['version'] == None:
+                        version = sanitize(line)
+                        if version != "na":
+                            output[key]['version'] = version
+
+                    if 'version' in output[key] and 'mcversion' in output[key]:
+                        break
+            except KeyError:
+                # no mcmod.info, ignore
+                pass
 
     for key in meta_data:
         if key in output:
