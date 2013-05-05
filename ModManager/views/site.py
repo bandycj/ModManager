@@ -10,6 +10,8 @@ from ModManager.views.forms.Forms import ModForm, ServerForm
 
 __author__ = 'e83800'
 
+MOD_INFO = "http://www.selurgniman.org/mod_info.json"
+
 def index():
     users = None
     if g.user != None and g.user.admin == True:
@@ -20,7 +22,10 @@ def index():
 
     for server in servers:
         mods[server.name] = json.loads(urllib2.urlopen(server.mods_url).read())
-    return render_template('index.html', users=users, servers=servers, mods=mods)
+
+    update_info = json.loads(urllib2.urlopen(MOD_INFO).read())
+
+    return render_template('index.html', users=users, servers=servers, mods=mods, update_info=update_info)
 
 
 @login_required
