@@ -55,6 +55,7 @@ def main():
                                 version = sanitize(line)
                                 if version != "na":
                                     output[key]['version'] = version
+                                    print version
 
                             if 'version' in output[key] and 'mcversion' in output[key]:
                                 break
