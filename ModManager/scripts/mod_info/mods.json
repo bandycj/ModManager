@@ -1,0 +1,112 @@
+{
+    "Advanced Machines": {
+        "url": "http://forum.industrial-craft.net/index.php?page=Thread&threadID=4907",
+        "scraperRegex": "Version(?P<version>[\\d.]+)",
+        "fileRegex": "AdvancedMachines_(?P<version>[\\d.]+)"
+    },
+    "Buildcraft": {
+        "url": "http://bit.ly/buildcraftver",
+        "scraperRegex": "(?P<version>[\\d.]+)$",
+        "fileRegex": "buildcraft-(?P<version>[\\d.]+)"
+    },
+    "CodeChicken Core": {
+        "url": "http://www.minecraftforum.net/topic/909223-125145-smp-chickenbones-mods/",
+        "scraperRegex": "CodeChickenCoreSpoiler:LatestVersion:(?P<version>[\\d.]+)",
+        "fileRegex": "CodeChickenCore\\s(?P<version>[\\d.]+)"
+    },
+    "Compact Solars": {
+        "url": "http://files.minecraftforge.net/CompactSolars/",
+        "scraperRegex": "BuildsBuild(?P<version>[\\d.]+)",
+        "fileRegex": "compactsolars-universal-.*-(?P<version>.*)"
+    },
+    "Computer Craft": {
+        "url": "http://www.minecraftforum.net/topic/892282-15-computercraft-152-now-with-wired-networks/",
+        "scraperRegex": "Currentversion:(?P<version>[\\d.]+)\\(for",
+        "fileRegex": "ComputerCraft(?P<version>.*)"
+    },
+    "Damage Indicators": {
+        "url": "http://www.minecraftforum.net/topic/1536685-142132-forge-hit-splat-damage-indicators-v105/",
+        "scraperRegex": "DOWNLOADDamageIndicators\\[.*\\]v(?P<version>[\\d.]+)",
+        "fileRegex": "DamageIndicators.*\\](?P<version>.*)"
+    },
+    "Dynmap": {
+        "url": "http://www.minecraftforum.net/topic/1543523-dynmap-dynmap-web-maps-for-minecraft/",
+        "scraperRegex": "DynmapForgev(?P<version>[\\d\\.]+)-\\[Adfly\\]",
+        "fileRegex": "Dynmap-(?P<version>.*)"
+    },
+    "EnchantingPlus": {
+        "url": "http://www.minecraftforum.net/topic/1528282-142132sspsmp-enchanting-plus-v1110/",
+        "scraperRegex": "VersionsMinecraft[\\d.]+:(?P<version>[\\d.]+)download",
+        "fileRegex": "EnchantingPlus-(?P<version>[\\d.])"
+    },
+    "EnderStorage": {
+        "url": "http://www.minecraftforum.net/topic/909223-125142-smp-chickenbones-mods/",
+        "scraperRegex": "EnderStorageSpoiler:LatestVersion:(?P<version>[\\d.]+)",
+        "fileRegex": "EnderStorage(?P<version>[\\d.])"
+    },
+    "Industrialcraft": {
+        "url": "http://ic2api.player.to:8080/job/IC2_lf/",
+        "scraperRegex": "LastSuccessfulArtifactsindustrialcraft-2-api_[\\d.]+-lf\\.zip\\d+\\.\\d+KBindustrialcraft-2_(?P<version>[\\d.]+)-lf\\.jar",
+        "fileRegex": "industrialcraft-2_(?P<version>[\\d.+])-lf"
+    },
+    "InfernalMobs": {
+        "url": "http://atomicstryker.net/updatemanager/modversions.txt",
+        "scraperRegex": "InfernalMobs=(?P<version>[\\d.]+)",
+        "fileRegex": "InfernalMobs_(?P<version>[\\d.]+)"
+    },
+    "Inventory Tweaks": {
+        "url": "http://inventory-tweaks.readthedocs.org/en/latest/#getting-started",
+        "scraperRegex": "DownloadInventoryTweaks(?P<version>[\\d.]+)",
+        "fileRegex": "InventoryTweaks_(?P<version>[\\d.]+)"
+    },
+    "Iron Chests": {
+        "url": "http://files.minecraftforge.net/IronChests2/",
+        "scraperRegex": "BuildsBuild(?P<version>[\\d.]+)",
+        "fileRegex": "ironchest-universal-.*-(?P<version>[\\d.]+)"
+    },
+    "Mob Amputation": {
+        "url": "http://ichun.us/mods/mob-amputation/",
+        "scraperRegex": "Changelog(?P<version>[\\d.v]+)",
+        "fileRegex": "MobAmputation(?P<version>[\\d.v]+)"
+    },
+    "Nether Ores": {
+        "url": "http://www.minecraftforum.net/topic/1629898-151-powercrystals-mods-15-updates-are-here-rednet-logic-is-here/",
+        "scraperRegex": "netheroresspawnonaper-orebasis.Download(?P<version>[\\d.]+)",
+        "fileRegex": "NetherOres-(?P<version>.*)"
+    },
+    "NEI Plugins": {
+        "url": "https://bitbucket.org/mistaqur/nei_plugins/wiki/Home",
+        "scraperRegex": "NEIPlugins-(?P<version>[\\d.]+)\\.jar",
+        "fileRegex": "NEIPlugins-(?P<version>[\\d.]+)"
+    },
+    "Not Enough Items": {
+        "url": "http://www.minecraftforum.net/topic/909223-125142-smp-chickenbones-mods/",
+        "scraperRegex": "NotEnoughItems\\(NEI\\)Spoiler:LatestVersion:(?P<version>[\\d.]+)",
+        "fileRegex": "NotEnoughItems\\s(?P<version>[\\d.]+)"
+    },
+    "Nuclear Control": {
+        "url": "http://forum.industrial-craft.net/index.php?page=Thread&threadID=5915",
+        "scraperRegex": "IC2NuclearControl-(?P<version>[\\d.]+)\\.zip",
+        "fileRegex": "IC2NuclearControl-(?P<version>[\\d.]+)"
+    },
+    "Optifine": {
+        "url": "http://www.minecraftforum.net/topic/249637-152-optifine-hd-d2-fps-boost-hd-textures-aa-af-and-much-more/",
+        "scraperRegex": "OptiFineHD(?P<version>[A-F\\d]+)Ultra",
+        "fileRegex": "OptiFine_[\\d.]_HD_U_(?P<version>[A-F\\d]+)"
+    },
+    "REI's Minimap": {
+        "url": "http://www.minecraftforum.net/topic/482147-145-nov21-reis-minimap-v32-05/",
+        "scraperRegex": "DownloadRei'sMinimapv(?P<version>[\\d._]+)",
+        "fileRegex": "ReiMinimap_v(?P<version>[\\d._])"
+    },
+    "Tree Capitator": {
+        "url": "http://bspk.rs/MC/TreeCapitator_Forge/latest/index.html",
+        "scraperRegex": "TreeCapitator\\.Forge\\.(?P<version>[\\d.r]+)\\.Uni\\.CoreMod",
+        "fileRegex": "TreeCapitator\\.Forge\\.(?P<version>[\\d.r]+)\\.Uni\\.CoreMod"
+    },
+    "Twilight Forest": {
+        "url": "http://www.minecraftforum.net/topic/561673-152-the-twilight-forest-v1172-miscellaneous-updates/",
+        "scraperRegex": "Download:Downloadv(?P<version>[\\d.]+)",
+        "fileRegex": "twilightforest-(?P<version>.*)"
+    }
+}
