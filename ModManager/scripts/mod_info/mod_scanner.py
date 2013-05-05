@@ -29,8 +29,8 @@ def main():
     for mod_file in glob.glob(minecraft_dir + "/*mods/*"):
         print mod_file
         for key in meta_data:
-            output[key] = {}
             if meta_data[key]['fileRegex'] != "":
+                output[key] = {}
                 m = re.search('(?i)' + meta_data[key]['fileRegex'] + '\\.(jar|zip)', mod_file)
                 if m is not None:
                     output[key]['version'] = m.group('version')
@@ -38,6 +38,8 @@ def main():
 
             root = zipfile.ZipFile(mod_file, "r")
             try:
+                if key not in output:
+                    output[key] = {}
                 root.getinfo('mcmod.info')
                 lines = root.open('mcmod.info').readlines()
                 for line in lines:
