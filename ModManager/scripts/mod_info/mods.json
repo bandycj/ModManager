@@ -2,11 +2,11 @@
     "Advanced Machines": {
         "url": "http://forum.industrial-craft.net/index.php?page=Thread&threadID=4907",
         "scraperRegex": "Version(?P<version>[\\d.]+)",
-        "fileRegex": "AdvancedMachines_.*"
+        "fileRegex": "AdvancedMachines_(?P<mcversion>[\\d.]+)"
     },
     "BspkrsCore": {
         "url": "http://bspk.rs/MC/bspkrsCore/index.html",
-        "scraperRegex": "bspkrsCorev(?P<version>[\\d.r]+)\\.",
+        "scraperRegex": "\\[(?P<mcversion>[\\d.]+)\\]bspkrsCorev(?P<version>[\\d.r]+)\\.",
         "fileRegex": "bspkrsCorev(?P<version>[\\d.]+)"
     },
     "Buildcraft": {
@@ -22,7 +22,7 @@
     "Compact Solars": {
         "url": "http://files.minecraftforge.net/CompactSolars/",
         "scraperRegex": "BuildsBuild(?P<version>[\\d.]+)",
-        "fileRegex": "compactsolars-universal-.*-(?P<version>.*)"
+        "fileRegex": "compactsolars-universal-(?P<mcversion>[\\d.]+)-(?P<version>.*)"
     },
     "Computer Craft": {
         "url": "http://www.minecraftforum.net/topic/892282-15-computercraft-152-now-with-wired-networks/",
@@ -32,7 +32,7 @@
     "Damage Indicators": {
         "url": "http://www.minecraftforum.net/topic/1536685-151152forge-hit-splat-damage-indicators-v264-rpg-ui-and-damage-amount-mod/",
         "scraperRegex": "DOWNLOADDamageIndicators\\[[\\d.]+\\]v(?P<version>[\\d.]+)",
-        "fileRegex": "DamageIndicators\\sv(?P<version>[\\d.]+)"
+        "fileRegex": "\\[(?P<mcversion>[\\d.]+)\\]DamageIndicators\\sv(?P<version>[\\d.]+)"
     },
     "Dynmap": {
         "url": "http://www.minecraftforum.net/topic/1543523-dynmap-dynmap-web-maps-for-minecraft/",
@@ -42,7 +42,7 @@
     "EnchantingPlus": {
         "url": "http://www.minecraftforum.net/topic/1528282-142132sspsmp-enchanting-plus-v1110/",
         "scraperRegex": "VersionsMinecraft[\\d.]+:(?P<version>[\\d.]+)download",
-        "fileRegex": "EnchantingPlus-[\\d.]+-(?P<version>[\\d.]+)"
+        "fileRegex": "EnchantingPlus-(?P<mcversion>[\\d.]+)-(?P<version>[\\d.]+)"
     },
     "EnderStorage": {
         "url": "http://www.minecraftforum.net/topic/909223-125142-smp-chickenbones-mods/",
@@ -57,7 +57,7 @@
     "InfernalMobs": {
         "url": "http://atomicstryker.net/updatemanager/modversions.txt",
         "scraperRegex": "InfernalMobs=(?P<version>[\\d.]+)",
-        "fileRegex": "InfernalMobs_.*"
+        "fileRegex": "InfernalMobs_(?P<mcversion>[\\d.]+)"
     },
     "Inventory Tweaks": {
         "url": "http://inventory-tweaks.readthedocs.org/en/latest/#getting-started",
@@ -67,7 +67,7 @@
     "Iron Chests": {
         "url": "http://files.minecraftforge.net/IronChests2/",
         "scraperRegex": "BuildsBuild(?P<version>[\\d.]+)",
-        "fileRegex": "ironchest-universal-.*-(?P<version>[\\d.]+)"
+        "fileRegex": "ironchest-universal-(?P<mcversion>[\\d.]+)-(?P<version>[\\d.]+)"
     },
     "Mob Amputation": {
         "url": "http://ichun.us/mods/mob-amputation/",
@@ -102,7 +102,7 @@
     "REI's Minimap": {
         "url": "http://www.minecraftforum.net/topic/482147-145-nov21-reis-minimap-v32-05/",
         "scraperRegex": "DownloadRei'sMinimapv(?P<version>[\\d._]+)",
-        "fileRegex": "ReiMinimap_v(?P<version>[\\d._]+)"
+        "fileRegex": "\\[(?P<mcversion>[\\d.]+)\\]ReiMinimap_v(?P<version>[\\d._]+)"
     },
     "Tree Capitator": {
         "url": "http://bspk.rs/MC/TreeCapitator_Forge/latest/index.html",
