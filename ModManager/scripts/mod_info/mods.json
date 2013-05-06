@@ -97,7 +97,7 @@
     "Optifine": {
         "url": "http://www.minecraftforum.net/topic/249637-152-optifine-hd-d2-fps-boost-hd-textures-aa-af-and-much-more/",
         "scraperRegex": "OptiFineHD(?P<version>[A-F\\d]+)Ultra",
-        "fileRegex": "OptiFine_[\\d.]+_HD_U_(?P<version>[A-F\\d]+)"
+        "fileRegex": "OptiFine_(?P<mcversion>[\\d.]+)_HD_U_(?P<version>[A-F\\d]+)"
     },
     "REI's Minimap": {
         "url": "http://www.minecraftforum.net/topic/482147-145-nov21-reis-minimap-v32-05/",
