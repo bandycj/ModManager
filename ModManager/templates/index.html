@@ -13,8 +13,7 @@
             $(tableId).tablesorter(
                     {
                         sortList: [
-                            [0, 1],
-                            [1, 0]
+                            [0, 0]
                         ]
                     }).trigger("create");
         }
@@ -36,12 +35,11 @@
             {% set active = "active" -%}
             {% for server in servers -%}
                 <div class="tab-pane {{ active }}" id="{{ server.name }}Info">
-                    <h3>Minecraft: {{ mods[server.name]['minecraft'] }}</h3>
+                    <h3>Minecraft: {{ mods[server.name]['minecraft'] }} (Latest: {{ update_info['Minecraft'] }})</h3>
                     {% set mcVersion = mods[server.name]['minecraft'] -%}
                     <table id="{{ server.name }}modTable" class="table table-striped table-condensed table-bordered table-hover tablesorter">
                         <thead>
                             <tr>
-                                <th style="width: 10%" class="version">Minecraft</th>
                                 <th style="width: 70%">Mod</th>
                                 <th style="width: 10%" class="version">Installed</th>
                                 <th style="width: 10%" class="version">Latest</th>
@@ -51,12 +49,11 @@
                             {% for value in mods[server.name] -%}
                                 {% if value != "minecraft" and mods[server.name][value] != "na" -%}
                                     {% set modInfo = mods[server.name][value] -%}
-                                    {% if modInfo['mcversion'] != mcVersion -%}
-                                        <tr class="error">
+                                    {% if update_info[value] != modInfo['version'] -%}
+                                        <tr class="warning">
                                     {% else -%}
                                         <tr class="success">
                                     {% endif -%}
-                                        <td class="version mcVersion">{{ modInfo['mcversion'] }}</td>
                                         <td>{{ value }}</td>
                                         <td class="version">{{ modInfo['version'] }}</td>
                                         <td class="version">

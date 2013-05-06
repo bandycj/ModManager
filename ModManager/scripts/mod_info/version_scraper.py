@@ -41,4 +41,4 @@ def getVersion(url, regex):
 
 if __name__ == '__main__':
     main()
-    # print getVersion("http://www.minecraftforum.net/topic/1536685-151152forge-hit-splat-damage-indicators-v264-rpg-ui-and-damage-amount-mod/", "DOWNLOADDamageIndicators\[[\d.]+\]v(?P<version>[\d.]+)")
+    # print getVersion("http://files.minecraftforge.net/", "BuildsBuild(?P<version>[\d.]+):\d{4}")

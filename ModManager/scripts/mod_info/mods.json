@@ -49,6 +49,11 @@
         "scraperRegex": "EnderStorageSpoiler:LatestVersion:(?P<version>[\\d.]+)",
         "fileRegex": "EnderStorage\\s(?P<version>[\\d.]+)"
     },
+    "Forge": {
+        "url": "http://files.minecraftforge.net/",
+        "scraperRegex": "BuildsBuild(?P<version>[\\d.]+):\\d{4}",
+        "fileRegex": ""
+    },
     "Industrialcraft": {
         "url": "http://ic2api.player.to:8080/job/IC2_lf/",
         "scraperRegex": "LastSuccessfulArtifactsindustrialcraft-2-api_[\\d.]+-lf\\.zip\\d+\\.\\d+KBindustrialcraft-2_(?P<version>[\\d.]+)-lf\\.jar",
@@ -68,6 +73,11 @@
         "url": "http://files.minecraftforge.net/IronChests2/",
         "scraperRegex": "BuildsBuild(?P<version>[\\d.]+)",
         "fileRegex": "ironchest-universal-(?P<mcversion>[\\d.]+)-(?P<version>[\\d.]+)"
+    },
+    "Minecraft": {
+        "url": "http://mcupdate.tumblr.com/",
+        "scraperRegex": "Minecraft(?P<version>[\\d.]+)",
+        "fileRegex": ""
     },
     "Mob Amputation": {
         "url": "http://ichun.us/mods/mob-amputation/",
