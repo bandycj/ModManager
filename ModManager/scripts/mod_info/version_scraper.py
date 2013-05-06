@@ -22,6 +22,8 @@ def main():
 
     for mod in meta_data:
         output[mod] = getVersion(meta_data[mod]["url"], meta_data[mod]["scraperRegex"])
+        print mod
+        print "\t" + output[mod]
 
     with args.output:
         json.dump(output, args.output)
@@ -30,12 +32,13 @@ def main():
 
 def getVersion(url, regex):
     soup = BeautifulSoup(urllib2.urlopen(url).read())
-    digestable = soup.getText().encode("ascii", "ignore").replace("\n", "").replace(" ", "").replace("\t", "")
+    digestable = re.sub("[\n\r\s\t]+", "", soup.getText().encode("ascii", "ignore"))
 
     m = re.search(regex, digestable)
     if m is not None:
-        return m.group('version').strip().encode("utf8")
+        return m.group('version').strip()
 
 
 if __name__ == '__main__':
     main()
+    # print getVersion("http://www.minecraftforum.net/topic/1536685-151152forge-hit-splat-damage-indicators-v264-rpg-ui-and-damage-amount-mod/", "DOWNLOADDamageIndicators\[[\d.]+\]v(?P<version>[\d.]+)")

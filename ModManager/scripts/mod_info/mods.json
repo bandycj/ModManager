@@ -5,8 +5,8 @@
         "fileRegex": "AdvancedMachines_.*"
     },
     "BspkrsCore": {
-        "url": "http://www.minecraftforum.net/topic/1114612-152-bspkrs-mods-armorstatushud-v17-directionhud-v113-statuseffecthud-v110/",
-        "scraperRegex": "(?P<version>[\\d.]+)$",
+        "url": "http://bspk.rs/MC/bspkrsCore/index.html",
+        "scraperRegex": "bspkrsCorev(?P<version>[\\d.r]+)\\.",
         "fileRegex": "bspkrsCorev(?P<version>[\\d.]+)"
     },
     "Buildcraft": {
@@ -30,8 +30,8 @@
         "fileRegex": "ComputerCraft(?P<version>.*)"
     },
     "Damage Indicators": {
-        "url": "http://www.minecraftforum.net/topic/1536685-142132-forge-hit-splat-damage-indicators-v105/",
-        "scraperRegex": "DOWNLOADDamageIndicators\\[.*\\]v(?P<version>[\\d.]+)",
+        "url": "http://www.minecraftforum.net/topic/1536685-151152forge-hit-splat-damage-indicators-v264-rpg-ui-and-damage-amount-mod/",
+        "scraperRegex": "DOWNLOADDamageIndicators\\[[\\d.]+\\]v(?P<version>[\\d.]+)",
         "fileRegex": "DamageIndicators\\sv(?P<version>[\\d.]+)"
     },
     "Dynmap": {

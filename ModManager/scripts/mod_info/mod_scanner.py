@@ -53,16 +53,6 @@ def main():
                             if m2 is not None:
                                 output[key]['version'] = m2.group('version')
 
-                        #for line in lines:
-                        #    if line.find("mcversion") > 0:
-                        #    mcversion = sanitize(line)
-                        #        if mcversion != "na":
-                        #            output[key]['mcversion'] = mcversion
-                        #    elif line.find("version") > 0 and 'version' not in output[key] and output[key]['version'] == "":
-                        #        version = sanitize(line)
-                        #        if version != "na":
-                        #            output[key]['version'] = version
-                        #            print version
                         print "\t" + output[key]['version'] + ":" + output[key]['mcversion']
                         if 'version' in output[key] and 'mcversion' in output[key]:
                             break
