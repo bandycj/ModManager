@@ -107,7 +107,7 @@
     "Tree Capitator": {
         "url": "http://bspk.rs/MC/TreeCapitator_Forge/latest/index.html",
         "scraperRegex": "TreeCapitator\\.Forge\\.(?P<version>[\\d.r]+)\\.Uni\\.CoreMod",
-        "fileRegex": "TreeCapitator\\.Forge\\.(?P<version>[\\d.r]+)\\.Uni\\.CoreMod"
+        "fileRegex": "\\[(?P<mcversion>[\\d.]+)\\]TreeCapitator\\.Forge\\.(?P<version>[\\d.r]+)\\.Uni\\.CoreMod"
     },
     "Twilight Forest": {
         "url": "http://www.minecraftforum.net/topic/561673-152-the-twilight-forest-v1172-miscellaneous-updates/",
