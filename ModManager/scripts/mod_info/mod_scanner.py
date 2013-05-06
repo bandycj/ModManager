@@ -35,30 +35,37 @@ def main():
                     output[key] = {}
                     try:
                         output[key]['version'] = m.group('version')
-                        print "\t" + m.group('version')
                     except IndexError:
                         # no version regex, ignore
                         pass
 
                     root = zipfile.ZipFile(mod_file, "r")
                     try:
-                        if key not in output:
-                            output[key] = {}
                         root.getinfo('mcmod.info')
                         lines = root.open('mcmod.info').readlines()
-                        for line in lines:
-                            if line.find("mcversion") > 0:
-                                mcversion = sanitize(line)
-                                if mcversion != "na":
-                                    output[key]['mcversion'] = mcversion
-                            elif line.find("version") > 0 and 'version' not in output[key] and output[key]['version'] == "":
-                                version = sanitize(line)
-                                if version != "na":
-                                    output[key]['version'] = version
-                                    print version
+                        mcmod_info = '\n'.join([str(x) for x in lines]).encode("ascii", "ignore").replace("\n", "").replace(" ", "").replace("\t", "")
+                        
+                        m1 = re.search('mcversion[":\s]+(?P<mcversion>[\d.]+)',mcmod_info)
+                        if m1 is not None:
+                            output[key]['mcversion'] = m1.group('mcversion')
+                        if 'version' not in output[key]:
+                            m2 = re.search('version[":\s]+(?P<version>[\d.]+)',mcmod_info)
+                            if m2 is not None:
+                                output[key]['version'] = m2.group('version')
 
-                            if 'version' in output[key] and 'mcversion' in output[key]:
-                                break
+                        #for line in lines:
+                        #    if line.find("mcversion") > 0:
+                        #    mcversion = sanitize(line)
+                        #        if mcversion != "na":
+                        #            output[key]['mcversion'] = mcversion
+                        #    elif line.find("version") > 0 and 'version' not in output[key] and output[key]['version'] == "":
+                        #        version = sanitize(line)
+                        #        if version != "na":
+                        #            output[key]['version'] = version
+                        #            print version
+                        print "\t" + output[key]['version'] + ":" + output[key]['mcversion']
+                        if 'version' in output[key] and 'mcversion' in output[key]:
+                            break
                     except KeyError:
                         # no mcmod.info, ignore
                         pass

@@ -2,7 +2,7 @@
     "Advanced Machines": {
         "url": "http://forum.industrial-craft.net/index.php?page=Thread&threadID=4907",
         "scraperRegex": "Version(?P<version>[\\d.]+)",
-        "fileRegex": "AdvancedMachines_(?P<version>[\\d.]+)"
+        "fileRegex": "AdvancedMachines_.*"
     },
     "BspkrsCore": {
         "url": "http://www.minecraftforum.net/topic/1114612-152-bspkrs-mods-armorstatushud-v17-directionhud-v113-statuseffecthud-v110/",
@@ -57,7 +57,7 @@
     "InfernalMobs": {
         "url": "http://atomicstryker.net/updatemanager/modversions.txt",
         "scraperRegex": "InfernalMobs=(?P<version>[\\d.]+)",
-        "fileRegex": "InfernalMobs_(?P<version>[\\d.]+)"
+        "fileRegex": "InfernalMobs_.*"
     },
     "Inventory Tweaks": {
         "url": "http://inventory-tweaks.readthedocs.org/en/latest/#getting-started",
