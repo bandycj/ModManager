@@ -54,13 +54,13 @@
                                     {% else -%}
                                         <tr class="success">
                                     {% endif -%}
-                                        <td>{{ value }}</td>
+                                        <td><a href="{{ update_info[value]['url'] }}">{{ value }}</a></td>
                                         <td class="version">{{ modInfo['version'] }}</td>
                                         <td class="version">
-                                        {% if update_info[value] != modInfo['version'] %}
+                                        {% if update_info[value]['version'] != modInfo['version'] %}
                                             <i class="icon-circle-arrow-up"></i>
                                         {% endif %}
-                                            {{ update_info[value] }}
+                                            {{ update_info[value]['version'] }}
                                         </td>
                                     </tr>
                                 {% endif -%}
