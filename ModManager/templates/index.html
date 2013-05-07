@@ -49,7 +49,7 @@
                             {% for value in mods[server.name] -%}
                                 {% if value != "minecraft" and mods[server.name][value] != "na" -%}
                                     {% set modInfo = mods[server.name][value] -%}
-                                    {% if update_info[value] != modInfo['version'] -%}
+                                    {% if update_info[value]['version'] != modInfo['version'] -%}
                                         <tr class="warning">
                                     {% else -%}
                                         <tr class="success">
