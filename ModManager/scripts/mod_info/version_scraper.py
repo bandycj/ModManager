@@ -21,7 +21,10 @@ def main():
     meta_data = json.load(open(current_dir + '/mods.json'))
 
     for mod in meta_data:
-        output[mod] = getVersion(meta_data[mod]["url"], meta_data[mod]["scraperRegex"])
+        output[mod] = {}
+        output[mod]['version'] = getVersion(meta_data[mod]["url"], meta_data[mod]["scraperRegex"])
+        output[mod]['url'] = meta_data[mod]['url']
+
         print mod
         print "\t" + output[mod]
 
