@@ -26,7 +26,7 @@ def main():
         output[mod]['url'] = meta_data[mod]['url']
 
         print mod
-        print "\t" + output[mod]
+        print "\t" + output[mod]['version']
 
     with args.output:
         json.dump(output, args.output)
