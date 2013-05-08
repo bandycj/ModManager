@@ -102,7 +102,7 @@
     "Nuclear Control": {
         "url": "http://forum.industrial-craft.net/index.php?page=Thread&threadID=5915",
         "scraperRegex": "IC2NuclearControl-(?P<version>[\\d.]+)\\.zip",
-        "fileRegex": "IC2NuclearControl-(?P<version>[\\d.]+)"
+        "fileRegex": "IC2NuclearControl-(?P<version>[\\d.a-f]+)"
     },
     "Optifine": {
         "url": "http://www.minecraftforum.net/topic/249637-152-optifine-hd-d2-fps-boost-hd-textures-aa-af-and-much-more/",
