@@ -25,8 +25,12 @@ def main():
         output[mod]['version'] = getVersion(meta_data[mod]["url"], meta_data[mod]["scraperRegex"])
         output[mod]['url'] = meta_data[mod]['url']
 
-        print mod
-        print "\t" + output[mod]['version']
+        try:
+            print mod
+            print "\t" + output[mod]['version']
+        except TypeError:
+            print "no version found"
+            continue
 
     with args.output:
         json.dump(output, args.output)

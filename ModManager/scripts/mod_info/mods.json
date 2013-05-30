@@ -56,7 +56,7 @@
     },
     "Industrialcraft": {
         "url": "http://ic2api.player.to:8080/job/IC2_lf/",
-        "scraperRegex": "LastSuccessfulArtifactsindustrialcraft-2-api_(?P<version>[\\d.]+)-lf\\.zip\\",
+        "scraperRegex": "LastSuccessfulArtifactsindustrialcraft-2-api_(?P<version>[\\d.]+)-lf\\.zip",
         "fileRegex": "industrialcraft-2_(?P<version>[\\d.]+).*"
     },
     "InfernalMobs": {
