@@ -35,8 +35,10 @@
             {% set active = "active" -%}
             {% for server in servers -%}
                 <div class="tab-pane {{ active }}" id="{{ server.name }}Info">
-                    <h3>Minecraft: {{ mods[server.name]['minecraft'] }} (Latest: {{ update_info['Minecraft']['version'] }})</h3>
-                    {% set mcVersion = mods[server.name]['minecraft'] -%}
+                    {% if mods[server.name]['minecraft'] -%}
+                        <h3>Minecraft: {{ mods[server.name]['minecraft'] }} (Latest: {{ update_info['Minecraft']['version'] }})</h3>
+                    {% endif -%}
+
                     <table id="{{ server.name }}modTable" class="table table-striped table-condensed table-bordered table-hover tablesorter">
                         <thead>
                             <tr>
@@ -47,7 +49,7 @@
                         </thead>
                         <tbody>
                             {% for value in mods[server.name] -%}
-                                {% if value != "minecraft" and mods[server.name][value] != "na" -%}
+                                {% if value != "minecraft" and mods[server.name][value] and mods[server.name][value] != "na" -%}
                                     {% set modInfo = mods[server.name][value] -%}
                                     {% if update_info[value]['version'] != modInfo['version'] -%}
                                         <tr class="warning">
