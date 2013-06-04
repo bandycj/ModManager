@@ -41,7 +41,7 @@
     },
     "EnchantingPlus": {
         "url": "http://www.minecraftforum.net/topic/1528282-142132sspsmp-enchanting-plus-v1110/",
-        "scraperRegex": "VersionsMinecraft[\\d.]+:(?P<version>[\\d.]+)download",
+        "scraperRegex": "Minecraft[\\d.]+:(?P<version>[\\d.]+)download",
         "fileRegex": "EnchantingPlus-(?P<mcversion>[\\d.]+)-(?P<version>[\\d.]+)"
     },
     "EnderStorage": {
