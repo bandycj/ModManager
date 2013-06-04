@@ -28,7 +28,7 @@
                 {% set active = "" %}
             {% endfor %}
             {% if g.user.admin -%}
-            <li><a href="{{ url_for('create_update_server') }}">Add new...</a></li>
+                <li><a href="{{ url_for('create_update_server') }}">Add new...</a></li>
             {% endif -%}
         </ul>
         <div class="tab-content">
@@ -36,7 +36,12 @@
             {% for server in servers -%}
                 <div class="tab-pane {{ active }}" id="{{ server.name }}Info">
                     {% if mods[server.name]['minecraft'] -%}
-                        <h3>Minecraft: {{ mods[server.name]['minecraft'] }} (Latest: {{ update_info['Minecraft']['version'] }})</h3>
+                        <h3>
+                            Minecraft: {{ mods[server.name]['minecraft'] }}
+                            {% if update_info['Minecraft'] -%}
+                                (Latest: {{ update_info['Minecraft']['version'] }})
+                            {% endif -%}
+                        </h3>
                     {% endif -%}
 
                     <table id="{{ server.name }}modTable" class="table table-striped table-condensed table-bordered table-hover tablesorter">
@@ -53,18 +58,18 @@
                                     {% set modInfo = mods[server.name][value] -%}
                                     {% if update_info[value]['version'] != modInfo['version'] -%}
                                         <tr class="warning">
-                                    {% else -%}
+                                            {% else -%}
                                         <tr class="success">
                                     {% endif -%}
-                                        <td><a href="{{ update_info[value]['url'] }}">{{ value }}</a></td>
-                                        <td class="version">{{ modInfo['version'] }}</td>
-                                        <td class="version">
-                                        {% if update_info[value]['version'] != modInfo['version'] %}
-                                            <i class="icon-circle-arrow-up"></i>
-                                        {% endif %}
-                                            {{ update_info[value]['version'] }}
-                                        </td>
-                                    </tr>
+                                <td><a href="{{ update_info[value]['url'] }}">{{ value }}</a></td>
+                                <td class="version">{{ modInfo['version'] }}</td>
+                                <td class="version">
+                                    {% if update_info[value]['version'] != modInfo['version'] %}
+                                        <i class="icon-circle-arrow-up"></i>
+                                    {% endif %}
+                                    {{ update_info[value]['version'] }}
+                                </td>
+                                </tr>
                                 {% endif -%}
                             {% endfor -%}
                         </tbody>
