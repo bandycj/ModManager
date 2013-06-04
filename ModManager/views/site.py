@@ -21,12 +21,17 @@ def index():
     mods = {}
 
     for server in servers:
+        mods[server.name] = {}
         try:
             mods[server.name] = json.loads(urllib2.urlopen(server.mods_url).read())
         except ValueError:
-            mods[server.name] = {}
+            pass
 
-    update_info = json.loads(urllib2.urlopen(MOD_INFO).read())
+    update_info = {}
+    try:
+        update_info = json.loads(urllib2.urlopen(MOD_INFO).read())
+    except ValueError:
+        pass
 
     return render_template('index.html', users=users, servers=servers, mods=mods, update_info=update_info)
 
