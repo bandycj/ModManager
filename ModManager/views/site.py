@@ -10,7 +10,7 @@ from ModManager.views.forms.Forms import ModForm, ServerForm
 
 __author__ = 'e83800'
 
-MOD_INFO = "http://www.selurgniman.org/mod_info.json"
+MOD_INFO = "http://www.selurgniman.org/minecraft/mod_info.json"
 
 def index():
     users = None
