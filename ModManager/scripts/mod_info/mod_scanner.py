@@ -78,7 +78,11 @@ def main():
 
     with args.output:
         json.dump(output, args.output)
-        os.chmod(args.output.name, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
+        try:
+            os.chmod(args.output.name, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
+        except OSError:
+            print "Couldn't fix permissions."
+            pass
 
 
 def sanitize(line):
