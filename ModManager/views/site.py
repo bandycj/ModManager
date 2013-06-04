@@ -21,7 +21,10 @@ def index():
     mods = {}
 
     for server in servers:
-        mods[server.name] = json.loads(urllib2.urlopen(server.mods_url).read())
+        try:
+            mods[server.name] = json.loads(urllib2.urlopen(server.mods_url).read())
+        except ValueError:
+            mods[server.name] = {}
 
     update_info = json.loads(urllib2.urlopen(MOD_INFO).read())
 
