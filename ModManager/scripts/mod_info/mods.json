@@ -76,7 +76,7 @@
     },
     "Minecraft": {
         "url": "http://mcupdate.tumblr.com/",
-        "scraperRegex": "Minecraft(?P<version>[\\d.]+)",
+        "scraperRegex": "Minecraft\\d+(?P<version>[\\d.]+)",
         "fileRegex": ""
     },
     "Mob Amputation": {
