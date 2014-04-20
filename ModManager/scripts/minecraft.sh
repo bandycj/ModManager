@@ -19,7 +19,7 @@ SERVICE="$BASEDIR.jar"
 STOP_COMMAND="stop"
 USERNAME="minecraft"
 MCPATH="/home/minecraft/$BASEDIR/ramdisk"
-INVOCATION="java -d64 -server -Xincgc -Xmx6G -Xms2G -Xmn512M -Djava.awt.headless=true -XX:UseSSE=3 -XX:ParallelGCThreads=4 -XX:+AggressiveOpts -XX:+UseLargePages -XX:LargePageSizeInBytes=2m -jar $SERVICE nogui"
+INVOCATION="java -server -Xmx2G -Xms1G -Xmn512M -Djava.awt.headless=true -XX:+UseLargePages -XX:LargePageSizeInBytes=2m -jar $SERVICE nogui"
 BACKUPPATH="/home/minecraft/Dropbox/minecraft"
 RDIFF_DEST="/home/minecraft/${BASEDIR}/rdiff"
 WWW_ROOT="/var/www/selurgniman.org/${BASEDIR}"
@@ -108,7 +108,7 @@ mc_stop() {
 mc_backup() {
   if [ -f $MCPATH/$SERVICE ]
 	then
-		NOW=$(date +"%Y-%b-%d-%H_%M_%S")
+		NOW=$(date +"%Y-%m-%d-%H_%M_%S")
 		ARCHIVE="$SERVICE-backup-$NOW.tar.bz2"
         echo "Cleaning up old backups"
 		echo "Backing up minecraft files"
@@ -203,7 +203,6 @@ case "$1" in
 		;;
     rdiff)
         mc_disksaverun
-        mc_rdiff
         ;;
 	rollback)
 		mc_stop
